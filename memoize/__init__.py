@@ -215,6 +215,8 @@ class Memoizer(object):
             cache_key += version_data
 
             if self.cache_prefix:
+                if kwargs.get('ticker'):
+                    cache_key = '%s:%s' % (cache_key, kwargs.get('ticker'))
                 cache_key = '%s:%s' % (self.cache_prefix, cache_key)
 
             return cache_key
